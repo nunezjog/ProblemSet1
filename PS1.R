@@ -46,11 +46,11 @@ for(i in 2:nrow(data)) {
 data$ex <- data$Tx/data$lx
 
 #b1. graph lx
-plot(data$lx)
+ggplot(data$lx)
 #b2. graoh ndx
-plot(data$ndx)
+ggplot(data$ndx)
 #b3. graoh nMx
-plot(data$nMx)
+ggplot(data$nMx)
 
 
 #c. le at 40
@@ -69,7 +69,11 @@ CBR=(1/data$ex[1])*1000
 
 #extra credit
 install.packages("LifeTables")
+install.packages("writexl")
 
 library(LifeTables)
+library(writexl)
 lt <- lt.mx(nmx = data$nMx, sex = "male", age = c(0, 1, seq(5, 85, 5)))
 lt2 = lt.mx(nmx=data$nMx, sex ="male", age = c(0,1,seq(5,85,5)), nax=NULL)
+
+write_xlsx(data, "lifetables.xlsx")
